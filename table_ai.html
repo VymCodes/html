@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text display -->
+    <meta charset="UTF-8">
+
+    <!-- Makes the page responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RMA Player Comparison</title>
+
+    <!-- Internal CSS for styling -->
+    <style>
+        /* Apply a clean font and center everything */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Style the table */
+        table {
+            border-collapse: collapse; /* Removes double borders */
+            width: 70%;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Style table header */
+        thead {
+            background-color: #0033cc;
+            color: white;
+        }
+
+        /* Style table cells */
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        /* Highlight first column (labels) */
+        tbody td:first-child {
+            font-weight: bold;
+            background-color: #f0f8ff;
+        }
+
+        /* Add hover effect for rows */
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Title styling */
+        caption {
+            caption-side: top;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Table starts here -->
+    <table>
+
+        <!-- Table title -->
+        <caption>Real Madrid Player Comparison</caption>
+
+        <!-- Header section -->
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Mbappé</th>
+                <th>Vinícius Jr</th>
+            </tr>
+        </thead>
+
+        <!-- Body section -->
+        <tbody>
+            <tr>
+                <td>Nationality</td>
+                <td>France</td>
+                <td>Brazil</td>
+            </tr>
+            <tr>
+                <td>World Cups</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Champions League Titles</td>
+                <td>0</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Total Goals</td>
+                <td>420+</td>
+                <td>125+</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</body>
+</html>
