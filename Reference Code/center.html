@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Centered Image Grid</title>
+
+  <style>
+
+    /* Remove default spacing from the page */
+    body {
+      margin: 0;
+      padding: 0;
+
+      /* Full screen height */
+      height: 100vh;
+
+      /* Use Flexbox to center the grid */
+      display: flex;
+
+      /* Center horizontally */
+      justify-content: center;
+
+      /* Center vertically */
+      align-items: center;
+
+      /* Light background color */
+      background-color: #f0f0f0;
+    }
+
+    /* Grid container */
+    .image-grid {
+
+      /* Enable CSS Grid */
+      display: grid;
+
+      /* Create 2 equal columns */
+      grid-template-columns: repeat(2, 220px);
+
+      /* Space between images */
+      gap: 15px;
+    }
+
+    /* Style all images */
+    .image-grid img {
+      width: 220px;
+      height: 160px;
+
+      /* Prevent image stretching */
+      object-fit: cover;
+
+      /* Rounded corners */
+      border-radius: 10px;
+
+      /* Small shadow effect */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Grid wrapper -->
+  <div class="image-grid">
+
+    <!-- Dummy images -->
+    <img src="https://picsum.photos/id/1011/220/160" alt="Nature Image 1">
+
+    <img src="https://picsum.photos/id/1025/220/160" alt="Nature Image 2">
+
+    <img src="https://picsum.photos/id/1035/220/160" alt="Nature Image 3">
+
+    <img src="https://picsum.photos/id/1041/220/160" alt="Nature Image 4">
+
+  </div>
+
+</body>
+</html>

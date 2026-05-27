@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Grid Layout</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .grid-container {
+      display: grid;
+
+      /* Using grid-template-columns */
+      grid-template-columns: repeat(2, 250px);
+
+      gap: 15px;
+    }
+
+    .grid-container img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <img src="https://picsum.photos/id/1015/250/180" alt="Image 1">
+    <img src="https://picsum.photos/id/1025/250/180" alt="Image 2">
+    <img src="https://picsum.photos/id/1035/250/180" alt="Image 3">
+    <img src="https://picsum.photos/id/1045/250/180" alt="Image 4">
+  </div>
+
+</body>
+</html>
