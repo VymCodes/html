@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Positioning Example</title>
+
+    <style>
+        /* This is a normal box style used by all boxes */
+        .box {
+            width: 120px;
+            height: 60px;
+            color: white;
+            text-align: center;
+            line-height: 60px;
+            margin: 10px;
+        }
+
+        /* POSITION: STATIC (default position) */
+        .static-box {
+            background-color: blue;
+            position: static;
+        }
+
+        /* POSITION: RELATIVE */
+        .relative-box {
+            background-color: green;
+            position: relative;
+
+            /* Moves the box from where it normally sits */
+            left: 30px;
+            top: 10px;
+        }
+
+        /* This container helps show absolute positioning */
+        .container {
+            position: relative; /* Parent for absolute box */
+            width: 300px;
+            height: 150px;
+            border: 2px solid black;
+            margin-top: 20px;
+        }
+
+        /* POSITION: ABSOLUTE */
+        .absolute-box {
+            background-color: red;
+            position: absolute;
+
+            /* Positioned inside the container */
+            top: 20px;
+            right: 20px;
+        }
+
+        /* POSITION: FIXED */
+        .fixed-box {
+            background-color: purple;
+            position: fixed;
+
+            /* Stays in the same spot even when scrolling */
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* POSITION: STICKY */
+        .sticky-box {
+            background-color: orange;
+            position: sticky;
+
+            /* Sticks to the top when scrolling */
+            top: 0;
+        }
+
+        /* Creates extra space so scrolling is possible */
+        .space {
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CSS Positioning Demo</h1>
+
+    <!-- STATIC -->
+    <!-- Static is the default position. -->
+    <div class="box static-box">
+        Static
+    </div>
+
+    <!-- RELATIVE -->
+    <!-- Relative moves from its normal position. -->
+    <div class="box relative-box">
+        Relative
+    </div>
+
+    <!-- STICKY -->
+    <!-- Sticky stays at the top when you scroll past it. -->
+    <div class="box sticky-box">
+        Sticky
+    </div>
+
+    <!-- ABSOLUTE -->
+    <!-- Absolute positions itself inside the nearest positioned parent. -->
+    <div class="container">
+        Container
+
+        <div class="box absolute-box">
+            Absolute
+        </div>
+    </div>
+
+    <!-- FIXED -->
+    <!-- Fixed stays in the same place on the screen. -->
+    <div class="box fixed-box">
+        Fixed
+    </div>
+
+    <!-- Extra space to allow scrolling -->
+    <div class="space"></div>
+
+</body>
+</html>
