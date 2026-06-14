@@ -1,0 +1,4 @@
+Questions
+-----------------------------
+1. How does the html and python connect?
+2. Is the API free?

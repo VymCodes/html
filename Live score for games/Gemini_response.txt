@@ -1,0 +1,26 @@
+Yes, the APIs have **free tiers**, but they come with daily limits. For example, **API-Football** gives you 100 free requests per day. This is plenty for building, testing, and learning, but if your website gets a lot of real visitors later on, you would eventually need to upgrade to a paid plan.
+
+Here are your condensed notes for the project:
+
+## Tech Stack
+
+* **Backend:** Python with **Flask** (lightweight, beginner-friendly framework to route pages and handle logic).
+* **Frontend:** **HTML5**, **CSS3**, and **Bootstrap** or **Tailwind CSS** (for quick, professional UI layouts and match cards).
+* **Data Source:** **API-Football** via RapidAPI (provides the actual data for live scores, upcoming schedules, and past eras).
+
+---
+
+## Core Concept: The "Data Pipeline"
+
+1. **Do not manually type data.** Your Python script will fetch match data automatically from the API using the `requests` library.
+2. The API sends back data structured like a Python dictionary (`JSON` format).
+3. Flask injects this data directly into your HTML using simple logic tags (e.g., `{{ match.home_team }}`).
+
+---
+
+## Development Phases
+
+* **Phase 1 (The Data):** Get a free API key. Write a basic Python script to pull live or historical match data and print it to your terminal to ensure it works.
+* **Phase 2 (The Interface):** Set up a Flask app. Pass that data from Python into an HTML file structured with Bootstrap match boxes.
+* **Phase 3 (The Filters):** Use URL parameters to organize games into distinct categories (e.g., `/live`, `/upcoming`, `/history`).
+* **Phase 4 (Live Updates):** Use a tiny snippet of JavaScript to auto-refresh the score section every 60 seconds, or use the pre-made HTML live widgets provided directly by the API.
