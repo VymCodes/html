@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyom's Cool JS Playground</title>
+    
+    <style>
+        /* This makes the whole page look like a fun video game */
+        body {
+            background-color: #f0f8ff; /* Soft sky blue */
+            font-family: 'Comic Sans MS', sans-serif; /* Fun font */
+            text-align: center;
+            padding-top: 70px;
+        }
+
+        /* Styling our cool buttons */
+        button {
+            background-color: #37a4da; /* Bright red-pink */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px; /* Makes it round and friendly */
+            cursor:pointer;
+            margin: 10px;
+            box-shadow: 0 5px #00000020; /* Soft shadow underneath */
+            transition: 0.2s; /* Makes the animation smooth */
+        }
+
+        /* This happens when you hover over the button */
+        button:hover {
+            background-color: #1417de; /* Turns bright green! */
+            transform: scale(1.1); /* Makes it pop out slightly */
+        }
+
+        /* This happens when you actually click the button */
+        button:active {
+            transform: translateY(4px); /* Pushes it down like a real button */
+            box-shadow: none;
+        }
+
+        /* The magic box where our answer will appear */
+        #result-box {
+            margin-top: 40px;
+            font-size: 32px;
+            color: #0c3692;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Wanna see some JavaScript Magic? ✨</h1>
+
+    <button onclick="myfunction(5)">Execute JS function</button>
+    <button onclick="yourfunction(3,8)">Vyoms cool button</button>
+
+    <div id="result-box">Click a button above! 🤔</div>
+
+<script>
+// Concept 1: Selecting an element from the HTML page
+// We grab the "result-box" div so we can change its text later.
+const screen = document.getElementById("result-box");
+
+function myfunction(x, y) {
+    // Your clever default value trick!
+    if (y === undefined) {
+        y = 2;
+    }
+    
+    // Concept 2: InnerHTML (Changing text on the page instead of wiping it)
+    screen.innerHTML = "Result is: " + (x * y);
+}
+
+function yourfunction(x, y) {
+    // First, let's put a "loading..." message
+    screen.innerHTML = "Thinking... 🧠";
+
+    // Concept 3: setTimeout (Adding a 1-second delay for suspense!)
+    setTimeout(function() {
+        if (x > 0 && y > 0) {
+            screen.innerHTML = "Boom! Added: " + (x + y) + " 🎉";
+        } else {
+            screen.innerHTML = "Boom! Subtracted: " + (x - y) + " 💥";
+        }
+    }, 2000); // 1000 milliseconds = 1 second
+}
+</script>
+
+</body>
+</html>
