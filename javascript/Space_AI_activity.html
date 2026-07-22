@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Explorer Academy</title>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dashboard {
+            border: 3px solid #00f2fe;
+            background-color: #161d31;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+
+        h1 {
+            color: #00f2fe;
+            margin-bottom: 5px;
+        }
+
+        .btn-panel {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* HTML/CSS CHALLENGE 1: Fill in the blank property below to make the mouse cursor look like a clickable hand when hovering over buttons! */
+        .control-btn {
+            background: linear-gradient(45deg, #0072ff, #00f2fe);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer; /* Hint: Starts with 'c' */
+            transition: 0.3s;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00f2fe;
+        }
+
+        .output-box {
+            background-color: #0d1324;
+            border: 1px solid #3a4765;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 40px;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1>🚀 Space Command</h1>
+        <p>Complete your prep routines to launch the spaceship!</p>
+
+        <div class="btn-panel">
+            <!-- HTML/CSS CHALLENGE 2: Add the missing event attribute to make the button run the welcomeCaptain function when clicked! -->
+            <button class="control-btn" onclick="welcomeCaptain('Vyom')">1. Identify Captain</button>
+            
+            <!-- JS CHALLENGE 1: This button passes 4 tanks and 150 liters per tank into the fuel function -->
+            <button class="control-btn" onclick="calculateFuel(4, 150)">2. Load Fuel</button>
+        </div>
+
+        <div class="output-box">
+            <p id="welcome-msg">Waiting for Captain identity...</p>
+            <p id="fuel-msg">Fuel status: Unknown</p>
+        </div>
+    </div>
+
+    <script>
+        // JS CHALLENGE 2: Fill in the parameter slot so this function receives the captain's name!
+        function welcomeCaptain(Vyom) {
+            // JS CHALLENGE 3: Fix the string concatenation below so it uses the parameter variable you just named!
+            document.getElementById("welcome-msg").innerHTML = "🧑‍🚀 Welcome aboard, Captain " + Vyom + "!";
+        }
+
+        function calculateFuel(tanks, litersPerTank) {
+            // This function uses variables locally inside it
+            var totalFuel = tanks * litersPerTank;
+            
+            // JS CHALLENGE 4: We want to double check the backup fuel using our return function below
+            var secureFuel = doubleCheckSystem(totalFuel);
+            
+            document.getElementById("fuel-msg").innerHTML = "⚡ Fuel Loaded: " + secureFuel + " Liters (Main + Reserve Online!)";
+        }
+
+        function doubleCheckSystem(amount) {
+            var finalAmount = amount + 200; // Adds 200 liters of reserve fuel
+            
+            // JS CHALLENGE 5: What keyword do we use to hand 'finalAmount' back to whoever called this function?
+            return finalAmount; 
+        }
+    </script>
+</body>
+</html>
