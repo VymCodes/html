@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JavaScript For Loop</h2>
+    <p id="demo"></p>
+    <p id="test"></p>
+    
+    <script>
+        var vyom = ["Apple", "Mango", "Grapes", "Watermelon", "Jack Fruit", "Banana", "vyom special fruit"];
+        var text = "";
+        var i;
+        for (i = 0; i < vyom.length; i++) {
+            text += vyom[i] + "<br><br>";
+        } 
+        text+="<hr>";
+        document.getElementById("demo").innerHTML = text;
+
+
+
+        var vyom2 = ["Cucumber", "Carrot", "Broccli", "Potato", "Onion", "Cabbage", "Spinach", "Peas", "Vyoms special vegtable"];
+        var text = "";
+        var i;
+        for (i = 0; i < vyom2.length; i++) {
+            text += vyom2[i] + "<br><br>";
+        }
+        document.getElementById("test").innerHTML = text;
+    </script>
+</body>
+</html>
