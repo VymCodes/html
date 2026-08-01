@@ -3,38 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple Calculator</title>
 </head>
 <body>
 
-    <div class="calculator">
+    <h1>Simple Calculator</h1>
+    <p>Perform all operations using JavaScript</p>
+    
+    <input type="number" id="input1" placeholder="Enter first number">
+    <input type="number" id="input2" placeholder="Enter second number">
+    <button onclick="calculate()">Calculate</button>
 
-        <input type="text" id="display" readonly>
-        <div class="buttons">
-            <button class="bt" type="button" onclick="clearDisplay()">C</button>
-            <button class="bt" type="button" onclick="appendOperator('/')">/</button>
-            <button class="bt" type="button" onclick="appendOperator('*')">*</button>
-            <button class="bt" type="button" onclick="appendOperator('-')">-</button>
+    <p id="add"></p>
+    <p id="sub"></p>
+    <p id="mul"></p>
+    <p id="div"></p>
+
+    <script>
+        function calculate() {
+            // Replaced 'const' with 'let' for all variables
+            let num1 = parseFloat(document.getElementById("input1").value);
+            let num2 = parseFloat(document.getElementById("input2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Please enter valid numbers in both boxes.");
+                return;
+            }
+
+            let add = num1 + num2;
+            let sub = num1 - num2;
+            let mul = num1 * num2;
+            let div = num1 / num2;
+
+            document.getElementById("add").textContent = "The added value is: " + add;
+            document.getElementById("sub").textContent = "The subtracted value is: " + sub;
+            document.getElementById("mul").textContent = "The multiplied value is: " + mul;
             
+            if (num2 === 0) {
+                document.getElementById("div").textContent = "The divided value is: Error (Cannot divide by zero)";
+            } else {
+                document.getElementById("div").textContent = "The divided value is: " + div;
+            }
+        }
+    </script>
 
-            <button class="bt" type="button" onclick="appendOperator('7')">7</button>
-            <button class="bt" type="button" onclick="appendOperator('8')">8</button>
-            <button class="bt" type="button" onclick="appendOperator('9')">9</button>
-            <button class="bt" type="button" onclick="appendOperator('+')">+</button>
-
-
-            <button class="bt" type="button" onclick="appendOperator('4')">4</button>
-            <button class="bt" type="button" onclick="appendOperator('5')">5</button>
-            <button class="bt" type="button" onclick="appendOperator('6')">6</button>
-            <button class="bt" type="button" onclick="calculate()">=</button>
-
-
-            <button class="bt" type="button" onclick="appendOperator('1')">1</button>
-            <button class="bt" type="button" onclick="appendOperator('2')">2</button>
-            <button class="bt" type="button" onclick="appendOperator('3')">3</button>
-            <button class="bt" type="button" onclick="appendOperator('0')">0</button>
-        
-        </div>
-    </div>
 </body>
 </html>
