@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JavaScript String Methods and Loops</h2>
+    <p>random number and date</p>
+    <p id="result"></p>
+</html>
+<div class="box">
+    <p id="result"></p>
+    <p id="answer"></p> 
+    <div style="background: #eef2f3; border: 2px solid #0076d6; padding: 15px;  border-radius: 8px; max-height: 200px; text-align: center;" id="date-box"></div>
+</div>
+<script>
+    var number = " "
+    for (i = 1; i < 11; i++) {
+    number += " <br> ";
+    }
+   document.getElementById('date-box').innerText = "The random value is " + Math.floor(Math.random() * 100) + " and today's Date is " + new Date().getDate();
+
+</script>
+</body>
+</html>
