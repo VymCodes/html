@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: dodgerblue;
+        }
+        .intro {
+            font-family: Georgia, 'Times New Roman', Times, serif;  
+            text-align: center;
+            font-size: 25px;
+        }
+
+        /* NEW: Added a container to center your blocks horizontally */
+        .card-container {
+            display: flex;
+            justify-content: center; /* Centers the items horizontally */
+            flex-wrap: wrap;         /* Allows boxes to wrap to the next line if the screen is too small */
+            gap: 20px;               /* Adds clean spacing between the cards */
+            padding: 20px;
+        }
+
+        /* Combined .soccer, .cube, and .guitar into one rule to remove repetition */
+        .soccer, .cube, .guitar {
+            font-family: Georgia, 'Times New Roman', Times, serif;  
+            background-color: gold;
+            border-radius: 25px;
+            padding: 15px;         /* Increased slightly so text doesn't overflow the edges */
+            text-align: center;
+            font-size: smaller;
+            margin: 20px;         
+            width: 25%;           
+            min-height: 180px;   
+            box-shadow: 0 40px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+       
+        .soccer:hover, .cube:hover, .guitar:hover {
+            transform: scale(1.15); 
+            box-shadow: 0 60px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, #000000, transparent);
+            margin: 30px 0;
+        }
+
+        p {
+            font-size: large;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After School Activities</title>
+</head>
+<body>
+    <div class="intro">
+        <h1>After school activities options</h1>
+        <hr>
+    </div>
+    
+    
+    <div class="card-container">
+        <div class="soccer">
+            <h2>The Soccer Team:</h2>
+            <p>Our soccer team consists of practices every monday, tuesday and thurday, while having a home or away game every friday.</p>
+        </div>
+
+        <div class="cube">
+            <h2>The Cubing Club</h2>
+            <p>The Cubing Club is a club where people get together on Mondays, Wednesdays, and Fridays to solve rubix cubes and practice, while fridays are competitions</p>
+        </div>
+
+        <div class="guitar">
+            <h2>The Guitar Players</h2>
+            <p>This activity is where people play guitars together, share songs, and show what guitars to buy. This is held everyday and people and can anytime.</p>
+        </div>
+    </div>
+</body>
+</html>
+
