@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massachusetts FC - Official Club Website</title>
+    <style>
+        body {
+            background-color: #8ba2d8;
+            margin: 0;
+            padding: 30px 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        h1, h2 {
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #1f2a44;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 20px;
+        }
+        p {
+            color: #1f2a44;
+            font-size: 1.8rem;
+            line-height: 1.4;
+        }
+        .page {
+            display: none; 
+            max-width: 1000px;
+            margin: 30px auto 0 auto;
+        }
+        .page.active {
+            display: block; 
+        }
+        .nav-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-btn {
+            font-weight: bold; 
+            background-color: rgba(255, 255, 255, 0.4); 
+            color: #1f2a44;
+            border: 2px solid #1f2a44;
+            padding: 10px 24px;
+            margin: 0 6px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .nav-btn:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 6px 15px rgba(31, 42, 68, 0.15);
+        }
+        .nav-btn.active {
+            color: #ffffff;
+            background-color: #1f2a44;
+            box-shadow: 0 4px 12px rgba(31, 42, 68, 0.25);
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #1f2a44, transparent);
+            margin: 20px 0;
+        }
+        #news p:first-of-type {
+            font-weight: bold;
+            margin-left: 10px;
+            margin-bottom: 15px;
+        }
+        .news {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px;
+        }
+        .News1, .News2, .News3, .News4 {
+            background-color: #ffd8a8;
+            padding: 40px 30px;
+            margin: 0;
+            border-radius: 25px;
+            border: 2px solid #1f2a44;
+            box-shadow: 0 6px 12px rgba(31, 42, 68, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .News1:hover, .News2:hover, .News3:hover, .News4:hover  {
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(31, 42, 68, 0.2);
+            background: linear-gradient(135deg, #fff0db, #ffe4c4);
+        }
+        #players div {
+            background-color: rgba(255, 255, 255, 0.25);
+            margin: 15px 0;
+            padding: 10px 25px;
+            border-radius: 15px;
+            border-left: 6px solid #1f2a44;
+            transition: transform 0.2s ease;
+        }
+        #players div:hover {
+            transform: translateX(8px);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        #players p {
+            margin: 0;
+            font-weight: bold;
+        }
+        #trophies p {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin: 12px 0;
+            border: 1px dashed #1f2a44;
+        }
+        @media (max-width: 768px) {
+            .news {
+                grid-template-columns: 1fr;
+            }
+            .nav-btn {
+                margin: 5px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Massachusetts FC</h1>
+        <div class="nav-container">
+            <nav>
+                <button id="btn-home" class="nav-btn active" onclick="switchPage('home')">Home</button>
+                <button id="btn-news" class="nav-btn" onclick="switchPage('news')">News</button>
+                <button id="btn-players" class="nav-btn" onclick="switchPage('players')">Players</button>
+                <button id="btn-trophies" class="nav-btn" onclick="switchPage('trophies')">Trophies</button>
+            </nav>
+        </div>
+        <hr>
+    </header>
+
+    <section id="home" class="page active">
+        <h2>Welcome to the Official Massachusetts FC Website!</h2>
+    </section>
+
+    <section id="news" class="page">
+        <p>News:</p>
+        <div class="news">
+            <p class="News1">Massachusetts FC have won the USA championship against Florida fire!</p>
+            <p class="News2">Massachusetts FC has just signed Kylian Mbappe after weeks of negotiating with Real Madrid.</p>
+            <p class="News3">Massachusets FC have just won ever tornament they have played in since 2025!</p>
+            <p class="News4">Left winger, Vyom Gupta is having one of his best seasons ever with 45 goals in 40 games</p>
+        </div>
+    </section>
+
+    <!-- PLAYERS PAGE -->
+    <section id="players" class="page">
+        <h2>Our Star Players</h2>
+        <div class="Mbappe">
+            <p>Kylian Mbappe</p>
+        </div>
+
+        <div class="Vyom">
+            <p>Vyom Gupta</p>
+        </div>
+
+        <div class="Ahaan">
+            <p>Ahaan Jhamb</p>
+        </div>
+    </section>
+
+    <!-- TROPHIES PAGE -->
+    <section id="trophies" class="page">
+        <h2>Trophy Cabinet</h2>
+        <p>USA Championship Trophy (2026,2025,2022,2020)</p>
+        <p>North America City Cup (2026,2025,2023)</p>
+        <p>Club World Cup (2026,2025)</p>
+    </section>
+
+    <script>
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+            const clickedButton = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(pageId));
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
