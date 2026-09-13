@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon JSON Explorer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #172033;
+    }
+
+    header {
+      background: #131921;
+      color: white;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      color: #d4d7dc;
+      font-size: 13px;
+    }
+
+    .cart {
+      background: #ff9900;
+      color: #111;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 18px;
+    }
+
+    .intro {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      margin-bottom: 22px;
+      border-left: 5px solid #ff9900;
+    }
+
+    .intro h2 {
+      margin-top: 0;
+    }
+
+    .intro p {
+      line-height: 1.6;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0000000d;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .product .emoji {
+      font-size: 45px;
+    }
+
+    .product h3 {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #b12704;
+      margin-bottom: 12px;
+    }
+
+    button {
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: bold;
+      background: #ff9900;
+      color: #111;
+      margin: 4px 0;
+    }
+
+    button:hover {
+      background: #e68a00;
+    }
+
+    button.secondary {
+      background: #e7e9ec;
+    }
+
+    button.green {
+      background: #16a34a;
+      color: white;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .cart-box {
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      gap: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0 12px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .json-box {
+      background: #111827;
+      color: #a7f3d0;
+      padding: 15px;
+      border-radius: 8px;
+      min-height: 180px;
+      max-height: 400px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .status {
+      padding: 12px;
+      border-radius: 7px;
+      background: #e0f2fe;
+      color: #075985;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .step {
+      padding: 8px 12px;
+      border-radius: 20px;
+      background: #e5e7eb;
+      font-size: 13px;
+    }
+
+    .step.active {
+      background: #ff9900;
+      font-weight: bold;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .explanation {
+      background: #fff7ed;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #fed7aa;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: #b45309;
+      font-weight: bold;
+    }
+
+    @media (max-width: 800px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <h1>Amazon JSON Explorer</h1>
+    <p>Explore how shopping activity becomes data</p>
+  </div>
+
+  <div class="cart">
+    🛒 Cart: <span id="cartCount">0</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <h2>Mission: Follow Your Shopping Data</h2>
+
+    <p>
+      You are shopping on Amazon. Every time you search, add a product,
+      or place an order, the website needs to store information about
+      your activity.
+    </p>
+
+    <p>
+      Your mission is to discover how ordinary shopping actions become
+      <strong>JSON</strong> and how that JSON is stored, fetched,
+      and sent to a server.
+    </p>
+  </div>
+
+  <div class="steps">
+    <div class="step active" id="step1">1. Browse</div>
+    <div class="step" id="step2">2. Add to Cart</div>
+    <div class="step" id="step3">3. Save JSON</div>
+    <div class="step" id="step4">4. Fetch JSON</div>
+    <div class="step" id="step5">5. Send Order</div>
+  </div>
+
+  <div class="main">
+
+    <!-- SHOPPING -->
+    <div class="panel">
+      <h2>🛍️ 1. Shop on Amazon</h2>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for a product..."
+        oninput="searchProducts()"
+      >
+
+      <div class="products" id="products"></div>
+
+      <div class="status" id="shopStatus">
+        Search for a product or add something to your cart.
+      </div>
+    </div>
+
+    <!-- CART -->
+    <div class="panel">
+      <h2>🛒 2. Your Shopping Cart</h2>
+
+      <div class="cart-box" id="cartItems">
+        Your cart is empty.
+      </div>
+
+      <h3>Total: ₹<span id="total">0</span></h3>
+
+      <button onclick="saveCart()">Save Cart as JSON</button>
+      <button class="secondary" onclick="fetchCart()">Fetch Saved Cart</button>
+
+      <hr>
+
+      <h3>Customer Details</h3>
+
+      <label>Name</label>
+      <input id="customerName" placeholder="Enter your name">
+
+      <label>City</label>
+      <input id="customerCity" placeholder="Enter your city">
+
+      <button class="green" onclick="placeOrder()">
+        Place Simulated Order
+      </button>
+
+      <div class="status" id="orderStatus">
+        Your order has not been placed.
+      </div>
+    </div>
+
+    <!-- JSON VIEWER -->
+    <div class="panel full">
+      <h2>📦 3. Live JSON Data</h2>
+
+      <p>
+        This is the data generated by your shopping activity.
+        Try adding products or changing your details.
+      </p>
+
+      <div class="json-box" id="jsonOutput">
+        {
+          "message": "Your JSON will appear here..."
+        }
+      </div>
+
+      <div class="explanation" id="jsonExplanation">
+        <strong>What is happening?</strong><br>
+        When you perform an action, JavaScript creates an object.
+        JSON.stringify() converts that object into JSON text.
+      </div>
+    </div>
+
+    <!-- DATA FLOW -->
+    <div class="panel full">
+      <h2>🔄 4. Follow the Data</h2>
+
+      <div class="main">
+
+        <div>
+          <h3>Browser → Storage</h3>
+
+          <p>
+            Amazon can save information about your cart in a database.
+            In this simulation, we use your browser's localStorage.
+          </p>
+
+          <button onclick="saveCart()">Save to Browser Storage</button>
+          <button class="secondary" onclick="fetchCart()">Fetch from Storage</button>
+
+          <div class="status" id="storageStatus">
+            Storage has not been used yet.
+          </div>
+        </div>
+
+        <div>
+          <h3>Browser → Server</h3>
+
+          <p>
+            When you place an order, the website sends JSON to a server.
+            Here we simulate the request without sending real data.
+          </p>
+
+          <button class="green" onclick="sendToServer()">
+            Send JSON to Server
+          </button>
+
+          <div class="status" id="serverStatus">
+            No request has been sent.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+  // -----------------------------------------
+  // 1. SIMULATED PRODUCT DATABASE
+  // -----------------------------------------
+
+  const products = [
+    {
+      id: 101,
+      name: "Wireless Headphones",
+      price: 1499,
+      emoji: "🎧"
+    },
+    {
+      id: 102,
+      name: "Mechanical Keyboard",
+      price: 2499,
+      emoji: "⌨️"
+    },
+    {
+      id: 103,
+      name: "Smart Watch",
+      price: 3999,
+      emoji: "⌚"
+    },
+    {
+      id: 104,
+      name: "Laptop Stand",
+      price: 999,
+      emoji: "💻"
+    }
+  ];
+
+  let cart = [];
+
+  let lastAction = "No action yet";
+
+  // -----------------------------------------
+  // 2. DISPLAY PRODUCTS
+  // -----------------------------------------
+
+  function displayProducts(list) {
+
+    const container = document.getElementById("products");
+
+    container.innerHTML = "";
+
+    list.forEach(product => {
+
+      const div = document.createElement("div");
+
+      div.className = "product";
+
+      div.innerHTML = `
+        <div class="emoji">${product.emoji}</div>
+
+        <h3>${product.name}</h3>
+
+        <div class="price">₹${product.price}</div>
+
+        <button onclick="addToCart(${product.id})">
+          Add to Cart
+        </button>
+      `;
+
+      container.appendChild(div);
+
+    });
+
+  }
+
+  function searchProducts() {
+
+    const query = document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase();
+
+    const filtered = products.filter(product =>
+      product.name.toLowerCase().includes(query)
+    );
+
+    displayProducts(filtered);
+
+    lastAction = `Searched for "${query}"`;
+
+    updateJSON();
+
+    document.getElementById("shopStatus").textContent =
+      `Search event recorded: "${query}"`;
+
+  }
+
+  // -----------------------------------------
+  // 3. ADD PRODUCT TO CART
+  // -----------------------------------------
+
+  function addToCart(productId) {
+
+    const product = products.find(p => p.id === productId);
+
+    cart.push({
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1
+    });
+
+    lastAction = `Added ${product.name} to cart`;
+
+    updateCart();
+
+    updateJSON();
+
+    document.getElementById("shopStatus").textContent =
+      `${product.name} added to your cart.`;
+
+  }
+
+  // -----------------------------------------
+  // 4. UPDATE CART
+  // -----------------------------------------
+
+  function updateCart() {
+
+    const cartContainer = document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+
+      cartContainer.innerHTML = "Your cart is empty.";
+
+    } else {
+
+      cartContainer.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <span>${item.name} × ${item.quantity}</span>
+
+          <span>
+            ₹${item.price}
+
+            <button
+              class="secondary"
+              onclick="removeFromCart(${index})">
+              Remove
+            </button>
+          </span>
+        </div>
+      `).join("");
+
+    }
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    document.getElementById("total").textContent = total;
+
+    document.getElementById("cartCount").textContent = cart.length;
+
+  }
+
+  function removeFromCart(index) {
+
+    const removed = cart.splice(index, 1)[0];
+
+    lastAction = `Removed ${removed.name} from cart`;
+
+    updateCart();
+
+    updateJSON();
+
+  }
+
+  // -----------------------------------------
+  // 5. CREATE THE JSON OBJECT
+  // -----------------------------------------
+
+  function createShoppingData() {
+
+    const name = document.getElementById("customerName").value;
+
+    const city = document.getElementById("customerCity").value;
+
+    const search = document.getElementById("searchInput").value;
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    return {
+
+      user: {
+        name: name || "Guest",
+        city: city || "Not provided"
+      },
+
+      activity: {
+        lastAction: lastAction,
+        searchQuery: search,
+        timestamp: new Date().toISOString()
+      },
+
+      cart: cart,
+
+      order: {
+        total: total,
+        currency: "INR"
+      }
+
+    };
+
+  }
+
+  // -----------------------------------------
+  // 6. CONVERT JAVASCRIPT OBJECT TO JSON
+  // -----------------------------------------
+
+  function updateJSON() {
+
+    const data = createShoppingData();
+
+    const jsonText = JSON.stringify(data, null, 2);
+
+    document.getElementById("jsonOutput").textContent = jsonText;
+
+    document.getElementById("jsonExplanation").innerHTML = `
+      <strong>JavaScript Object → JSON</strong><br>
+
+      Your activity is represented as a JavaScript object.
+      <br><br>
+
+      <span class="highlight">
+      JSON.stringify(data, null, 2)
+      </span>
+
+      converts that object into JSON text.
+      <br><br>
+
+      The JSON contains your user details, shopping activity,
+      cart items, and order total.
+    `;
+
+  }
+
+  // -----------------------------------------
+  // 7. SAVE JSON TO BROWSER STORAGE
+  // -----------------------------------------
+
+  function saveCart() {
+
+    const data = createShoppingData();
+
+    const jsonText = JSON.stringify(data);
+
+    localStorage.setItem("amazonShoppingData", jsonText);
+
+    document.getElementById("storageStatus").textContent =
+      "JSON saved to browser localStorage.";
+
+    lastAction = "Saved shopping data to browser storage";
+
+    updateJSON();
+
+  }
+
+  // -----------------------------------------
+  // 8. FETCH JSON FROM STORAGE
+  // -----------------------------------------
+
+  function fetchCart() {
+
+    const savedJSON = localStorage.getItem("amazonShoppingData");
+
+    if (!savedJSON) {
+
+      document.getElementById("storageStatus").textContent =
+        "No saved shopping data found.";
+
+      return;
+
+    }
+
+    const data = JSON.parse(savedJSON);
+
+    cart = data.cart || [];
+
+    document.getElementById("customerName").value =
+      data.user.name === "Guest" ? "" : data.user.name;
+
+    document.getElementById("customerCity").value =
+      data.user.city === "Not provided" ? "" : data.user.city;
+
+    lastAction = "Fetched shopping data from browser storage";
+
+    updateCart();
+
+    updateJSON();
+
+    document.getElementById("storageStatus").textContent =
+      "JSON fetched, parsed, and loaded back into the cart.";
+
+  }
+
+  // -----------------------------------------
+  // 9. PLACE A SIMULATED ORDER
+  // -----------------------------------------
+
+  function placeOrder() {
+
+    if (cart.length === 0) {
+
+      document.getElementById("orderStatus").textContent =
+        "Add a product before placing an order.";
+
+      return;
+
+    }
+
+    const data = createShoppingData();
+
+    const orderId = "ORD" + Math.floor(Math.random() * 90000 + 10000);
+
+    data.order.orderId = orderId;
+
+    data.order.status = "Confirmed";
+
+    data.order.createdAt = new Date().toISOString();
+
+    const orderJSON = JSON.stringify(data, null, 2);
+
+    document.getElementById("jsonOutput").textContent = orderJSON;
+
+    document.getElementById("orderStatus").textContent =
+      `Order ${orderId} created. JSON is ready to send to a server.`;
+
+    lastAction = "Created a simulated order";
+
+    document.getElementById("jsonExplanation").innerHTML = `
+      <strong>Order JSON created</strong><br>
+
+      The shopping cart has been converted into an order object.
+      It now contains an order ID, customer information,
+      cart items, and the total amount.
+      <br><br>
+
+      In a real application, this data would be sent to
+      the backend to process the order.
+    `;
+
+  }
+
+  // -----------------------------------------
+  // 10. SIMULATE SENDING JSON TO SERVER
+  // -----------------------------------------
+
+  async function sendToServer() {
+
+    const data = createShoppingData();
+
+    const jsonText = JSON.stringify(data);
+
+    document.getElementById("serverStatus").textContent =
+      "Sending JSON to the simulated server...";
+
+    /*
+      In a real website:
+
+      fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      Here we simulate the request so that the
+      activity works without a backend.
+    */
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    document.getElementById("serverStatus").textContent =
+      "Server received the JSON request successfully.";
+
+    document.getElementById("jsonOutput").textContent = jsonText;
+
+    document.getElementById("jsonExplanation").innerHTML = `
+      <strong>JSON sent to server</strong><br>
+
+      The browser prepared JSON text and sent it
+      using the HTTP POST method.
+      <br><br>
+
+      In a real application, the server would receive
+      this data, validate it, and save the order in
+      a database.
+      <br><br>
+
+      <span class="highlight">
+      fetch() → POST request → Server → Database
+      </span>
+    `;
+
+    lastAction = "Sent JSON to simulated server";
+
+  }
+
+  // -----------------------------------------
+  // 11. INITIALIZE APPLICATION
+  // -----------------------------------------
+
+  displayProducts(products);
+
+  updateCart();
+
+  updateJSON();
+
+</script>
+
+</body>
+</html>
+```
