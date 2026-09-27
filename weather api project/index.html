@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main class="container">
+
+        <section class="hero">
+            <p class="tag">GlobalWeather</p>
+
+            <h1>Weather Explorer</h1>
+
+            <p>
+               Search a city and discover how the weather is like today!
+            </p>
+        </section>
+
+        <section class="search-box">
+
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter a city"
+                >
+
+                <button id="searchButton">
+                    Fetch Weather
+                </button>
+
+        </section>
+
+        <p id="status"></p>
+
+        <section id="weatherCard" class="weather-card hidden">
+
+            <div class="weather-header">
+                <div>
+                    <p class="label">CURRENT WEATHER</p>
+
+                    <h2 id="cityName">Boston</h2>
+
+                    <p id="condition">Clear sky</p>
+                </div>
+
+                <div id="weatherIcon" class="weather-icon">
+                      ☀️  ☀️  ☀️
+                </div>
+            </div>
+
+            <div class="temperature">
+                <span id="temperature">--</span>°C
+            </div>
+
+            <div class="weather-details">
+
+                <div>
+                    <span>Wind speed</span>
+                    <strong id="windSpeed">-- km/h</strong>
+                </div>
+
+                <div>
+                    <span>Coordinates</span>
+                    <strong id="coordinates">--</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="json-section">
+
+            <div class="section-header">
+                <h2>API Response</h2>
+
+                <button id="toggleJson" class="small-button">
+                    Show JSON
+                </button>
+            </div>
+
+            <p>
+                This is the data returned by the weather server.
+            </p>
+
+            <pre id="jsonOutput" class="json-output hidden">
+Click "Fetch Weather" to see the API response.
+            </pre>
+
+        </section>
+
+        <section class="explanation">
+
+            <h2>What happened?</h2>
+
+            <div id="explanationText">
+                Enter a city to begin.
+            </div>
+
+        </section>
+
+        <footer>
+            Weather data by
+            <a href="https://open-meteo.com/" target="_blank">
+                Open-Meteo.com
+            </a>
+        </footer>
+
+    </main>
+
+    <script src="js/app.js"></script>
+
+
+    </main>
+</body>
+</html>
