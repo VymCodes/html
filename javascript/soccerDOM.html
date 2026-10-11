@@ -1,0 +1,105 @@
+ 
+<!-- 🏆 The Challenge: Build a Penalty Shootout Game!
+
+In this activity, you will create a soccer goal, a soccer ball, and a button. When you click the button, you will use JavaScript to "kick" the ball into the net!
+
+⚽ Step 1: Set Up the Stadium (HTML)
+
+First, we need to add our game elements to the field. Create the structure using HTML tags.
+• Create a container <div> with an id of "stadium".
+• Inside the stadium, create another <div> with an id of "goal".
+• Inside the stadium, create a <div> with an id of "ball".
+• Below the stadium, create a <button> with an id of "kick-btn" that says "Kick the Ball!".
+💡 Hint: Remember that tags come in pairs! A button looks like this: <button id="my-id">Text Here</button>.
+
+🎨 Step 2: Paint the Pitch (CSS)
+
+Let's make it look like a real soccer game using basic CSS styling. Add these styles to your elements:
+• Give the #stadium a width of 400px, a height of 300px, a green background (background-color: green;), and set its position to relative (position: relative;).
+• Give the #goal a width of 200px, a height of 100px, a white border (border: 5px solid white;), and center it at the top of the stadium.
+• Give the #ball a width of 40px, a height of 40px, a white background, and a circle shape (border-radius: 50%;). Position it at the bottom-center of the stadium using absolute positioning (position: absolute; bottom: 20px; left: 180px;).
+💡 Hint: To make the ball look like a real soccer ball, you can add border: 2px dashed black; to give it some panels!
+
+⚡ Step 3: Scout the Elements (JS DOM Selection)
+
+Now, switch to your JavaScript file. Before we can manipulate our soccer elements, we need to tell JavaScript how to find them on the page.
+• Create a variable to store the button using document.getElementById().
+• Create another variable to store the ball using document.getElementById().
+💡 Hint: Your code should look something like this:
+const ballElement = document.getElementById("ball");
+
+🏃‍♂️ Step 4: The Big Kick! (JS Event Listener & Manipulation)
+
+Time to make the magic happen! We want the ball to move up into the goal when the button is clicked.
+• Add a click event listener to your button using .addEventListener().
+• Inside the event listener function, change the ball's position by manipulating its style property. Change its bottom style to "180px" so it moves up into the goal!
+💡 Hint: To change styles in JavaScript, use the syntax: element.style.propertyName = "value";. For example: ballElement.style.bottom = "180px";
+
+🎉 Step 5: Celebrate the Goal! (JS Text Manipulation)
+
+A goal isn't complete without a celebration! Let's update the button text to show we scored.
+• Inside the same click function, change the text inside the button to say "GOAAAAAL! 🥅⚽".
+💡 Hint: You can change the text inside an HTML tag by using the .innerText property. -->
+ 
+ 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            background-color: rgb(121, 226, 161);
+        }
+        #stadium {
+            width: 400px;
+            height: 300px;
+            background-color: green;
+            position: relative;
+        }
+        #goal {
+            width: 200px;
+            height: 100px;
+            border: 5px solid white;
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #ball {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px; 
+            left: 180px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="stadium">
+        <div id="goal">
+
+        </div>
+
+        <div id="ball">
+
+        </div>
+    </div>
+    <button id="kick-btn">Kick The Ball!</button>
+
+
+    <script>
+        const ballElement = document.getElementById("ball");
+        const kickButton = document.getElementById("kick-btn");
+
+        kickButton.addEventListener("click", function() {
+            ballElement.style.bottom = "180px";
+
+            kickButton.innerText = "GOAAAAAAALLLLLL"
+        });
+    </script>
+</body>
+</html>
