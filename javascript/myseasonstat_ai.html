@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Season Stats</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #002060;
+            margin-bottom: 5px;
+        }
+
+        #greeting {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            min-height: 24px;
+        }
+
+        button {
+            background: #002060;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 32, 96, 0.2);
+            margin-bottom: 30px;
+        }
+
+        button:hover {
+            background: #003399;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .stats-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 340px;
+            box-sizing: border-box;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .stat-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .stat-value {
+            color: #002060;
+            font-weight: 700;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #cbd5e1;
+            margin: 15px 0;
+        }
+
+        .highlight-row {
+            background-color: #eef2ff;
+            margin: 0 -20px;
+            padding: 12px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Season Stats</h1>
+    <p id="greeting">Click the button to load your data.</p>
+    
+    <button onclick="showProfile()">Show Stats</button>
+
+    <div class="stats-container">
+        <div class="stat-row"><span class="stat-label">Name:</span> <span id="name" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Club:</span> <span id="club" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Appearances:</span> <span id="app" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Goals:</span> <span id="goals" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Assists:</span> <span id="assists" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Total G/A:</span> <span id="ga" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Dribbles:</span> <span id="dribbles" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Cards:</span> <span id="cards" class="stat-value">-</span></div>
+        
+        <hr>
+        
+        <div class="stat-row highlight-row"><span class="stat-label">G/A Per Game:</span> <span id="gapg" class="stat-value">-</span></div>
+        <div class="stat-row"><span class="stat-label">Performance:</span> <span id="performance" class="stat-value">-</span></div>
+    </div>
+
+    <script>
+        function showProfile() {
+            let name = "Vyom";
+            let club = "A-B Revolution";
+            let goals = 4;
+            let assists = 3;
+            let ga = goals + assists;
+            let dribbles = 26;
+            let app = 6;
+            let cards = 0; // Changed from null so it displays nicely
+            let gapg = (ga / app);
+
+            let stats;
+            if (gapg >= 1) {
+                stats = "Great ⭐";
+            } else if (gapg >= 0.5) {
+                stats = "Average 👍";
+            } else {
+                stats = "Bad 👎";
+            }
+
+            let hour = new Date().getHours();
+            let greetingText;
+            if (hour < 12) {
+                greetingText = "Good Morning, here are your stats!";
+            } else if (hour < 17) {
+                greetingText = "Good Afternoon, here are your stats!";
+            } else {
+                greetingText = "Good Evening, here are your stats!";
+            }
+
+            // Update the greeting message above the button
+            document.getElementById("greeting").innerHTML = greetingText;
+
+            // Update the stats table
+            document.getElementById("name").innerHTML = name;
+            document.getElementById("club").innerHTML = club;
+            document.getElementById("goals").innerHTML = goals;
+            document.getElementById("assists").innerHTML = assists;
+            document.getElementById("ga").innerHTML = ga;
+            document.getElementById("dribbles").innerHTML = dribbles;
+            document.getElementById("app").innerHTML = app;
+            document.getElementById("cards").innerHTML = cards;
+            document.getElementById("gapg").innerHTML = gapg.toFixed(2); // Formats to 2 decimal places (e.g., 1.40)
+            document.getElementById("performance").innerHTML = stats;
+        }
+    </script>
+</body>
+</html>

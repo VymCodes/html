@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: aliceblue;
+            text-align: center;
+            padding: 30px;
+        }
+        h1 {
+            color: navy;
+        }
+        button {
+            background: navy;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        div {
+            border: 1px solid navy;
+            width: 280px;
+            margin: 6px auto;
+            padding: 8px 12px;
+            text-align: left;
+            border-radius: 6px;
+        }
+    </style>
+    <title>My Season Stats</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>My Season Stats</h1>
+    <button onclick="showProfile()">Show Stats</button>
+
+    <div>Name: <span id="name"></span></div>
+    <div>Club: <span id="club"></span></div>
+    <div>Goals: <span id="goals"></span></div>
+    <div>Assists: <span id="assists"></span></div>
+    <div>Total G/A: <span id="ga"></span></div>
+    <div>Dribbles: <span id="dribbles"></span></div>
+    <div>Cards: <span id="cards"></span></div>
+    <div>In _ Appearences: <span id="app"></span></div>
+    <hr>
+    <div>G/A per game: <span id="gapg"></span></div>
+
+    <script>
+        function showProfile() {
+        let name = "Vyom";
+        let club = "A-B Revolution";
+        let goals = 4;
+        let assists = 3;
+        let ga = goals+assists
+        let dribbles = 26;
+        let app = 5;
+        let cards = null;
+        let gapg = (ga/app)
+
+        let stats;
+        if (gapg >= 1) {                //fix stats
+            stats = "Great";
+        } else if (gapg >= 0.5) {
+          stats = "Average";
+        } else {
+          stats = "Bad";
+        }
+
+        let hour = new Date().getHours();
+        let greeting;
+        if (hour <12) {
+            greeting = "Good Morning, here are your stats!";
+        } else if (hour <17) {
+            greeting = "Good Afternoon, here are your stats!";
+        } else {
+            greeting = "Good Evening, here are your stats!";
+        }
+
+        document.getElementById("name").innerHTML       = name;
+        document.getElementById("club").innerHTML       = club;
+        document.getElementById("goals").innerHTML       = goals;
+        document.getElementById("assists").innerHTML       = assists;
+        document.getElementById("ga").innerHTML       = ga;
+        document.getElementById("dribbles").innerHTML       = dribbles;
+        document.getElementById("app").innerHTML       = app;
+        document.getElementById("cards").innerHTML       = cards;
+        document.getElementById("gapg").innerHTML       = gapg;
+        
+    }
+    </script>
+</body>
+</html>
